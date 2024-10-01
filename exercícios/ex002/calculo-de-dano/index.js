@@ -1,6 +1,6 @@
 // Apresentação //
 alert(
-    "Olá jogar! Seja bem-vindo à calculadora de dano."
+    "Olá jogar(a)! Seja bem-vindo à calculadora de dano."
 )
 
 // Informações do personagem A //
