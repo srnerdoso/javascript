@@ -1,2 +1,2 @@
 # javascript
- Curso de JavaScript do Curso Em Vídeo
+Curso de JavaScript fullstack da OneBitCode
