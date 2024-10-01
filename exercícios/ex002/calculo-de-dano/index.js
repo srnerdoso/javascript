@@ -19,6 +19,8 @@ let lifeCharB = parseFloat(prompt("Insira a quantidade de pontos vida do seu opo
 const defCharB = parseFloat(prompt("Insira a quantidade de pontos de defesa do seu oponente:"))
 const isShield = confirm("Seu oponente terá escudo? Clique em OK ou em CANCELAR.")
 
+const iniLifeCharB = lifeCharB
+
 alert(
     "Processando informações do oponente..." +
     "\nNome: " + charB +
@@ -34,10 +36,6 @@ alert(
     "\nQue a luta comece!"
 )
 
-/*
-Variável referente ao dano do personagem
-Caso haja algum erro no cálculo, uma mensagem será exibida no console
-*/
 let damage = alert("Calculando dano recebido por " + charB + "...")
 
 // Condições de dano recebido pelo personagem B //
@@ -46,12 +44,30 @@ if (powerCharA > defCharB) {
     lifeCharB -= damage
 
     // Verifica se há algum valor negativo no cálculo da vida do personagem B //
-    lifeCharB = lifeCharB < 0 ? lifeCharB *= -1 : lifeCharB
+    lifeCharB = lifeCharB < 0 ? lifeCharB = 0 : lifeCharB
 } else {
     damage = 0
 }
 
+// Condicionais de possíveis finais //
+if (lifeCharB == 0) {
+    alert(
+        charB + " foi completamente amassado por " + charA + "! Uma grande demonstração de habilidade!"
+    )
+} else if (lifeCharB > 0) {
+    const infDamage = (iniLifeCharB > lifeCharB) ? alert(charA + " foi capaz de dar dano em " + charB + " mas não foi capaz de levá-lo a ruína!") : alert("Infelizmente " + charA + " não foi capaz de dar nem mesmo um arranhão em " + charB + "! Acho que ele deveria tentar treinar mais antes de tentar novamente.")
+}
+
 alert(
     "O dano efetuado foi de: " + damage + "." +
-    "\nPontos de vida de " + charB + " após receber o ataque: " + lifeCharB + "."
+    "\nPontos de vida de " + charB + " após receber o ataque: " + lifeCharB + "." +
+    "\n" +
+    "\nInformações dos personagens." +
+    "\n" + charA +
+    "\nPoder de ataque: " + powerCharA +
+    "\n-----------------------------------" +
+    "\n" + charB +
+    "\nPontos de vida: " + lifeCharB +
+    "\nPontos de defesa: " + defCharB +
+    "\nPossui escudo? " + isShield
 )
