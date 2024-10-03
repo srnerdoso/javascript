@@ -2,4 +2,4 @@
 Curso de JavaScript fullstack da OneBitCode
 
 Último exercício:
-<a href="./exercícios/ex002/calculo-de-dano/index.html">Clique aqui</a>
+<a href="./exercícios/ex003/index.html">Clique aqui</a>
