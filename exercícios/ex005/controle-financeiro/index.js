@@ -1,26 +1,25 @@
-// Exercício ainda sem correção //
+let saldo = parseFloat(prompt("Informe a quantidade de dinheiro inicial:"))
+let opcao = ""
 
-let amountMoney = parseFloat(prompt(
-    "Olá cliente. Quanto dinheiro você tem disponível?"
-))
-
-let isRemove = false
-let addRemove = 0
 do {
-    isRemove = confirm(
-        "Você tem R$" + amountMoney + " disponível." +
-        "\nDeseja sacar ou adicionar mais dinheiro? (Ok/Cancelar)"
+    opcao = prompt(
+        "Saldo disponível: R$" + saldo +
+        "\n1. Adicionar dinheiro" +
+        "\n2. Remover dinheiro" +
+        "\n3. Sair"
     )
-    
-    addRemove = (isRemove == true) ? prompt("Você deseja sacar ou depositar? (Sacar/Depositar)") : alert("Você escolheu cancelar.")
-    
-    if (addRemove === "Sacar") {
-        addRemove = parseFloat(prompt("Quanto dinheiro você deseja sacar?"))
 
-        amountMoney = (amountMoney >= addRemove) ? amountMoney - addRemove : alert("Você não possui esta quantidade de dinheiro disponível para saque. Por favor tente novamente.")
-    } else if (addRemove === "Depositar") {
-        addRemove = parseFloat(prompt("Quanto dinheiro você deseja depositar?"))
-
-        amountMoney += addRemove
+    switch (opcao) {
+        case "1":
+            saldo += parseFloat(prompt("Informe o valor a ser adicionado:"))
+            break
+        case "2":
+            saldo -= parseFloat(prompt("Informe o valor a ser removido:"))
+            break
+        case "3":
+            alert("Saindo...")
+            break
+        default:
+            alert("Entrada inválida!")
     }
-} while(isRemove)
+} while (opcao !== "3")
