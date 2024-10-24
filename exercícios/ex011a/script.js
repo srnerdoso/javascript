@@ -44,7 +44,6 @@ function buttonClicked(button) {
 }
 
 
-
 function operation(symbol) {
     calculatorInput.value += symbol
     numbers.push(symbol)
