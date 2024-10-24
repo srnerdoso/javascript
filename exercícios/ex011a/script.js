@@ -56,13 +56,21 @@ function equal() {
     calculatorInput.value = ''
 
     if (mathSymbol === '+') {
-        calculatorInput.value = a + b
+        let sum = a + b
+        calculatorInput.value = sum
+        numbers = [sum]
     } else if (mathSymbol === '-') {
-        calculatorInput.value = a - b
+        let sub = a - b
+        calculatorInput.value = sub
+        numbers = [sub]
     } else if (mathSymbol === '*') {
-        calculatorInput.value = a * b
+        let mult = a * b
+        calculatorInput.value = mult
+        numbers = [mult]
     } else if (mathSymbol === '/') {
-        calculatorInput.value = a / b
+        let divs = a / b
+        calculatorInput.value = divs
+        numbers = [divs]
     } else {
         calculatorInput.placeholder = 'Digite um valor válido'
     }
