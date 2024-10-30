@@ -1,0 +1,100 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F4ECD6;
+}
+
+
+nav {
+    background-color: #006BA6;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav p {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 2em;
+    color: #F4ECD6;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+nav img {
+    width: 30px;
+    height: 30px;
+}
+
+main {
+    background-color: #fff9e8;
+    
+    height: 100vh;
+    width: 60vw;
+    
+    margin: auto;
+    padding: 20px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: "Oswald", sans-serif;
+    color: #005684;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input {
+    background-color: #ffe7a6;
+
+    width: 300px;
+    height: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    margin: 5px;
+    padding: 10px;
+
+    border-radius: 10px;
+    border-style: none;
+}
+
+button {
+    background-color: #006BA6;
+    color: aliceblue;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+
+    padding: 10px;
+    margin: 5px;
+
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background-color: #00324e;
+}
+
+button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0 0 0;
+}
