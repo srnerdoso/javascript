@@ -4,6 +4,7 @@
 :root {
     --colorBase-1: #006BA6;
     --colorBase-2: #F4ECD6;
+    --colorBase-3: #002437;
 }
 
 * {
@@ -43,7 +44,7 @@ nav img {
 main {
     background-color: #fff9e8;
     
-    height: 100%;
+    height: 100vh;
     width: 80%;
     
     margin: auto;
@@ -84,7 +85,6 @@ input[type="text"] {
 }
 
 input[type="radio"] {
-    background-color: var(--colorBase-1);
     margin: 0 10px 0 20px;
 }
 
@@ -118,4 +118,42 @@ button:hover {
 button:active {
     transform: translate(2px, 2px);
     box-shadow: 0 0 0;
+}
+
+footer {
+    background-color: var(--colorBase-3);
+}
+
+footer p {
+    color: white;
+
+    font-family: "Oswald", sans-serif;
+    font-size: 1.5em;
+
+    text-decoration: none;
+    text-align: center;
+
+    transform: translate(0, 20px);
+}
+
+footer div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+}
+
+footer a {
+    color: white;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer img {
+    margin: 0 3px 0 10px;
 }
