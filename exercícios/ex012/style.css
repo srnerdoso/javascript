@@ -4,7 +4,7 @@
 :root {
     --colorBase-1: #006BA6;
     --colorBase-2: #F4ECD6;
-    --colorBase-3: #002437;
+    --colorBase-3: #003d5e;
 }
 
 * {
@@ -45,7 +45,7 @@ main {
     background-color: #fff9e8;
     
     height: 100vh;
-    width: 80%;
+    max-width: 1024px;
     
     margin: auto;
     padding: 20px;
