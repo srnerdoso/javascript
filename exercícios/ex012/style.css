@@ -1,6 +1,11 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Pixelify+Sans:wght@400..700&display=swap');
 
+:root {
+    --colorBase-1: #006BA6;
+    --colorBase-2: #F4ECD6;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,12 +13,14 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #F4ECD6;
+    background-color: var(--colorBase-2);
+    width: 100%;
+    height: 100vh;
 }
 
 
 nav {
-    background-color: #006BA6;
+    background-color: var(--colorBase-1);
     height: 70px;
     display: flex;
     align-items: center;
@@ -23,7 +30,7 @@ nav {
 nav p {
     font-family: "Pixelify Sans", sans-serif;
     font-size: 2em;
-    color: #F4ECD6;
+    color: var(--colorBase-2);
     text-align: center;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
@@ -36,8 +43,8 @@ nav img {
 main {
     background-color: #fff9e8;
     
-    height: 100vh;
-    width: 60vw;
+    height: 100%;
+    width: 80%;
     
     margin: auto;
     padding: 20px;
@@ -51,6 +58,7 @@ main {
 h1 {
     font-family: "Oswald", sans-serif;
     color: #005684;
+    text-align: center;
 }
 
 form {
@@ -61,10 +69,10 @@ label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-input {
+input[type="text"] {
     background-color: #ffe7a6;
 
-    width: 300px;
+    width: 150px;
     height: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 
@@ -75,8 +83,21 @@ input {
     border-style: none;
 }
 
+input[type="radio"] {
+    background-color: var(--colorBase-1);
+    margin: 0 10px 0 20px;
+}
+
+#fullname {
+    width: 300px;
+}
+
+li {
+    list-style: none;
+}
+
 button {
-    background-color: #006BA6;
+    background-color: var(--colorBase-1);
     color: aliceblue;
 
     font-family: Verdana, Geneva, Tahoma, sans-serif;
