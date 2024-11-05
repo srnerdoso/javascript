@@ -16,3 +16,6 @@ function switchTheme() {
 document.getElementById('lightBtn').addEventListener('click', useLightTheme)
 document.getElementById('darkBtn').addEventListener('click', useDarkTheme)
 document.getElementById('switchBtn').addEventListener('click', switchTheme)
+
+
+// Fazer um sistema para quando o player passar o mouse por cima da casa aparecer um pouco apagado o simbolo que ele está jogando (X ou O)
