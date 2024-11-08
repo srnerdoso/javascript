@@ -1,50 +1,40 @@
 const options = ["x", "o"];
-const players = []
+const winers = [];
+
+const p1Name = document.getElementById("p1Name")
+const p2Name = document.getElementById("p2Name")
+
+const playersContainer = document.getElementById("playersContainer").children;
+const player1Li = playersContainer[0];
+const player2Li = playersContainer[1];
+
+function getPlayersNames() {
+  if (p1Name.value !== "" && p2Name.value === "") {
+    player1Li.innerText = p1Name.value
+  } else if (p2Name.value !== "" && p1Name === "") {
+    player2Li.innerText = p2Name.value
+  } else if (p1Name.value !== "" && p2Name.value !== "") {
+    player1Li.innerText = p1Name.value
+    player2Li.innerText = p2Name.value
+  }
+}
 
 let buttonIndex = 0;
 function initializeGameScene() {
-  const div = document.createElement("div");
-  div.id = "buttons-container";
-  document.querySelector("main").appendChild(div);
+  getPlayersNames()
 
-  const playersContainer = document.getElementById("players-container")
-  const p1Name = document.getElementById("p1Name").value
-  const p2Name = document.getElementById("p2Name").value
-
-  players.push(p1Name, p2Name)
-
-  const h2 = document.createElement("h2")
-  h2.innerText = "Jogadores:"
-  playersContainer.appendChild(h2)
-
-  const p1 = document.createElement("p")
-  p1.className = "player-select"
-  p1.innerText = p1Name
-  const p2 = document.createElement("p")
-  p2.className = "player-select"
-  p2.innerText = p2Name
-
-  playersContainer.append(p1, p2)
-  playersContainer.id = "playersContainer"
-
-  for (let i = 0; i < 9; i++) {
-    const button = document.createElement("button");
-    // button.id = "square-" + buttonIndex;
-    button.className = "squares";
-
-    buttonIndex++;
-
-    div.appendChild(button);
-  }
-
-  document.getElementById("player1").remove()
-  document.getElementById("player2").remove()
+  document.getElementById("home-screen").style.display = "none";
+  document.getElementById("game-screen").style.display = "block";
 }
 
 let playerIndex = 0;
 
 function getCurrentPLayer() {
-  return players[playerIndex]
+  if (playerIndex === 0) {
+    return player1Li.innerText
+  } else {
+    return player2Li.innerText
+  }
 }
 
 function getCurrentOption() {
@@ -52,80 +42,101 @@ function getCurrentOption() {
 }
 
 function switchPlayer() {
-  playerIndex = (playerIndex + 1) % players.length;
+  playerIndex = (playerIndex + 1) % options.length;
 
-  const playersList = document.querySelectorAll("p")
-  togglePlayer(playersList[0], playersList[1])
+  togglePlayer(player1Li, player2Li);
+}
+
+function switchSquareHover(optionClass, option) {
+  document.querySelectorAll(optionClass).forEach(function (optionIndex) {
+    optionIndex.classList = option;
+  });
 }
 
 function togglePlayer(player1, player2) {
   if (playerIndex === 0) {
-    player1.className = "selected-player"
-    player2.className = "player-select"
+    player1.className = "selected-player";
+    player2.className = "player-select";
+
+    switchSquareHover(".squares-o", "squares-x");
   } else {
-    player1.className = "player-select"
-    player2.className = "selected-player"
+    player1.className = "player-select";
+    player2.className = "selected-player";
+
+    switchSquareHover(".squares-x", "squares-o");
   }
 }
 
+function createModalWin() {
+  const div = document.createElement("div");
+  const h2 = document.createElement("h2");
+  const p = document.createElement("p");
+  const button = document.createElement("button");
+
+  div.id = "winner-modal";
+  h2.innerText = "WIN!";
+  p.innerText = getCurrentPLayer() + " VENCEU!";
+  button.onclick = "resetGame()";
+  button.innerText = "Jogar novamente";
+
+  div.append(h2, p, button);
+  document.querySelector("main").appendChild(div);
+}
+
+function disableSquares(optionClass) {
+  document.querySelectorAll(optionClass).forEach(function (option) {
+    option.className = "squares-clicked";
+    option.disabled = true;
+  });
+}
+
 function getPlayerMove(buttonSquare) {
-  const playersList = document.querySelectorAll("p")
-  togglePlayer(playersList[0], playersList[1])
-  
-  let mouseoverEvent = function () {
-    buttonSquare.className = "squares-" + getCurrentOption() + "-hover";
-  };
-
-  buttonSquare.addEventListener("mouseover", mouseoverEvent);
-
-  let win = false
+  let win = false;
   buttonSquare.addEventListener("click", function () {
-    buttonSquare.removeEventListener("mouseover", mouseoverEvent);
+    togglePlayer(player2Li, player1Li);
 
     buttonSquare.className = "squares-clicked";
     buttonSquare.innerText = getCurrentOption().toUpperCase();
-
     buttonSquare.disabled = true;
 
     for (let i = 0; i < 8; i++) {
       if (checkWin(i)) {
-        win = checkWin(i)
-        break
+        win = checkWin(i);
+        createModalWin();
+        
+        break;
       }
     }
 
-    if (win) {
-      for (let i = 0; i < 9; i++) {
-        const buttons = document.getElementById("buttons-container").children
-        buttons[i].removeEventListener("mouseover", mouseoverEvent)
-        // buttons[i].className = "squares-clicked"   Sem funcionar por enquanto, tentarei resolver amanhã
-        buttons[i].disabled = true
-      }
-
-      console.log("FUNCIONOU!!!!!!!")
+    if (!win) {
+      switchPlayer();
+    } else if (playerIndex === 0) {
+      disableSquares(".squares-x");
+    } else if (playerIndex === 1) {
+      disableSquares(".squares-o");
     }
-
-    switchPlayer();
   });
-
-  return;
 }
 
 function play() {
   initializeGameScene();
 
-  document.querySelectorAll(".squares").forEach(function (square) {
-    getPlayerMove(square);
-  });
+  document
+    .getElementById("buttons-container")
+    .childNodes.forEach(function (square) {
+      getPlayerMove(square);
+    });
 }
 
 function resetGame() {
-  const squares = document.querySelectorAll(".squares");
-  squares.forEach(function (square) {
-    square.remove();
-  });
+  document.getElementById("winner-modal").style.display = "none"
 
-  play();
+  const squares = document.querySelectorAll(".squares-clicked");
+  squares.forEach(function (square) {
+    square.classList = "squares-x";
+    square.innerText = "";
+    square.disabled = false;
+  });
 }
 
 function checkWin(index) {
@@ -142,15 +153,15 @@ function checkWin(index) {
     { position1: 2, position2: 4, position3: 6 },
   ];
 
-  const squares = document.getElementById("buttons-container").children
+  const squares = document.getElementById("buttons-container").children;
 
-  let optionsIndex0 = options[0].toUpperCase()
+  let optionsIndex0 = options[0].toUpperCase();
 
-  let position1 = squares[wins[index].position1].innerText == optionsIndex0
-  let position2 = squares[wins[index].position2].innerText == optionsIndex0
-  let position3 = squares[wins[index].position3].innerText == optionsIndex0
+  let position1 = squares[wins[index].position1].innerText == optionsIndex0;
+  let position2 = squares[wins[index].position2].innerText == optionsIndex0;
+  let position3 = squares[wins[index].position3].innerText == optionsIndex0;
 
-  return position1 + position2 + position3 === 3
+  return position1 + position2 + position3 === 3;
 }
 
 function checkGameOutcome() {}
@@ -161,6 +172,4 @@ playBtn.addEventListener("click", function () {
   document.querySelector("h1").id = "tic-tac-hoe";
 
   play();
-
-  playBtn.remove();
 });

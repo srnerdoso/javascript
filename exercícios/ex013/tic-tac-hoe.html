@@ -10,18 +10,40 @@
     <main>
       <h1>Jogo da Velha</h1>
 
-      <div id="players-container">
-        <div class="player-container" id="player1">
-          <label for="p1Name">Jogador 1</label>
-          <input type="text" name="player" id="p1Name">
+      <div id="home-screen">
+        <div id="players-container">
+          <div class="player-container" id="player1">
+            <label for="p1Name">Jogador 1</label>
+            <input type="text" name="player" id="p1Name" />
+          </div>
+          <div class="player-container" id="player2">
+            <label for="p2Name">Jogador 2</label>
+            <input type="text" name="player" id="p2Name" />
+          </div>
         </div>
-        <div class="player-container" id="player2">
-          <label for="p2Name">Jogador 2</label>
-          <input type="text" name="player" id="p2Name">
-        </div>
+        <button id="playBtn">Jogar</button>
       </div>
 
-      <button id="playBtn">Jogar</button>
+      <div id="game-screen">
+        <h2>Jogadores:</h2>
+
+        <ul id="playersContainer">
+          <li class="selected-player">Jogador 1</li>
+          <li class="player-select">Jogador 2</li>
+        </ul>
+
+        <div id="buttons-container">
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+          <button class="squares-x"></button>
+        </div>
+      </div>
     </main>
 
     <script src="./script.js"></script>
