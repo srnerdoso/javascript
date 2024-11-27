@@ -1,8 +1,8 @@
 const options = ["x", "o"];
 const winers = [];
 
-const p1Name = document.getElementById("p1Name")
-const p2Name = document.getElementById("p2Name")
+const p1Name = document.getElementById("p1Name");
+const p2Name = document.getElementById("p2Name");
 
 const playersContainer = document.getElementById("playersContainer").children;
 const player1Li = playersContainer[0];
@@ -10,18 +10,18 @@ const player2Li = playersContainer[1];
 
 function getPlayersNames() {
   if (p1Name.value !== "" && p2Name.value === "") {
-    player1Li.innerText = p1Name.value
+    player1Li.innerText = p1Name.value;
   } else if (p2Name.value !== "" && p1Name === "") {
-    player2Li.innerText = p2Name.value
+    player2Li.innerText = p2Name.value;
   } else if (p1Name.value !== "" && p2Name.value !== "") {
-    player1Li.innerText = p1Name.value
-    player2Li.innerText = p2Name.value
+    player1Li.innerText = p1Name.value;
+    player2Li.innerText = p2Name.value;
   }
 }
 
 let buttonIndex = 0;
 function initializeGameScene() {
-  getPlayersNames()
+  getPlayersNames();
 
   document.getElementById("home-screen").style.display = "none";
   document.getElementById("game-screen").style.display = "block";
@@ -31,9 +31,9 @@ let playerIndex = 0;
 
 function getCurrentPLayer() {
   if (playerIndex === 0) {
-    return player1Li.innerText
+    return player1Li.innerText;
   } else {
-    return player2Li.innerText
+    return player2Li.innerText;
   }
 }
 
@@ -67,20 +67,15 @@ function togglePlayer(player1, player2) {
   }
 }
 
-function createModalWin() {
-  const div = document.createElement("div");
-  const h2 = document.createElement("h2");
-  const p = document.createElement("p");
-  const button = document.createElement("button");
+function modalWin() {
+  const winnerModal = document.getElementById("winner-modal")
+  winnerModal.style.display = "flex"
 
-  div.id = "winner-modal";
-  h2.innerText = "WIN!";
-  p.innerText = getCurrentPLayer() + " VENCEU!";
-  button.onclick = "resetGame()";
-  button.innerText = "Jogar novamente";
+  document.getElementById("current-player").innerText = getCurrentPLayer()
 
-  div.append(h2, p, button);
-  document.querySelector("main").appendChild(div);
+  document.querySelector("#winner-modal button").addEventListener("click", function () {
+    resetGame()
+  })
 }
 
 function disableSquares(optionClass) {
@@ -102,8 +97,8 @@ function getPlayerMove(buttonSquare) {
     for (let i = 0; i < 8; i++) {
       if (checkWin(i)) {
         win = checkWin(i);
-        createModalWin();
-        
+        modalWin();
+
         break;
       }
     }
@@ -129,7 +124,8 @@ function play() {
 }
 
 function resetGame() {
-  document.getElementById("winner-modal").style.display = "none"
+  togglePlayer(player1Li, player2Li)
+  document.getElementById("winner-modal").style.display = "none";
 
   const squares = document.querySelectorAll(".squares-clicked");
   squares.forEach(function (square) {
