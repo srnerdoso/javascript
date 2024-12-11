@@ -1,0 +1,8 @@
+// Para criar um projeto com npm
+npm init
+
+// Site para encontrar módulos npm
+npmjs.com
+
+// Para executar o código no terminal
+node ./[diretório do código]/nome-do-arquivo.js

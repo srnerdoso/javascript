@@ -1,0 +1,13 @@
+// npx
+npx serve para executar códigos de módulos
+
+// scripts
+podemos adicionar comandos nos scripts do package.json:
+    "scripts": {
+    "hello": "hello-world-npm",
+    "start": "node index.js"
+  }
+
+Podemos chamar os comandos utilizando "npm run [comando]"
+Obs: O comando start pode ser chamado apenas com npm
+    npm start
