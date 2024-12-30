@@ -1,44 +1,35 @@
-const Deposit = require("./Deposit");
-const Loan = require("./Loan");
-const Transfer = require("./Transfer");
-
 module.exports = class Account {
   #balance;
 
-  constructor(username) {
-    this.username = username;
+  constructor(user) {
+    this.owner = user;
     this.#balance = 0;
     this.deposits = [];
     this.loans = [];
     this.transfers = [];
   }
 
-  deposit(amount) {
-    this.#balance += amount;
-    this.deposits.push(new Deposit(amount));
-  }
-
-  loan(amount, installments) {
-    this.#balance += amount;
-    this.loans.push(new Loan(amount, installments));
-  }
-
-  transfer(amount, user, transactionType) {
-    const addTransfer = (param) => {
-      this.transfers.push(param);
-    };
-
-    if (transactionType === "transferring") {
-      this.#balance -= amount;
-      user.deposit(amount)
-      addTransfer(new Transfer(amount, this, user));
-    } else if (transactionType === "receiving") {
-      this.#balance += amount;
-      addTransfer(new Transfer(amount, user, this));
-    }
-  }
-
   get getBalance() {
     return this.#balance
+  }
+
+  addDeposit(deposit) {
+    this.#balance += deposit.amount;
+    this.deposits.push(deposit);
+  }
+
+  addLoan(loan) {
+    this.#balance += loan.amount;
+    this.loans.push(loan);
+  }
+
+  addTransfer(transfer) {
+    if (transfer.sender === this.owner.email) {
+      this.#balance -= transfer.amount;
+      this.transfers.push(transfer);
+    } else if (transfer.receiver === this.owner.email) {
+      this.#balance += transfer.amount;
+      this.transfers.push(transfer);
+    }
   }
 };

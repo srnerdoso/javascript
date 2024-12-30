@@ -1,31 +1,20 @@
-const App = require("./App");
+const App = require("./App")
 
-App.createUser("Nerdola", "nerds@nedices.com", 1234);
-const nerdola = App.findUser("nerds@nedices.com").account;
+App.createUser("nerdola@email.com", "Senhor Nerdoso")
+App.createUser("pzglevi@email.com", "Pzg Levi")
+App.createUser("golpebaixo@email.com", "Golpe Baixo")
 
-App.createUser("Pz", "pz@nedices.com", 1234);
-const pz = App.findUser("pz@nedices.com").account;
+App.deposit("nerdola@email.com", 100)
 
-console.log(nerdola);
-console.log(pz);
+App.transfer("nerdola@email.com", "pzglevi@email.com", 20)
 
-nerdola.deposit(10000.0);
-console.log(nerdola);
+App.changeLoanFee(10)
+App.takeLoan("golpebaixo@email.com", 2000, 24)
 
-nerdola.transfer(600, pz, "transferring");
-
-console.log(nerdola.getBalance);
-console.log(pz.getBalance);
-
-nerdola.loan(50000, 10);
-console.log(nerdola);
-console.log(nerdola.loans[0].installment.payment());
-console.log(nerdola.getBalance);
-
-App.setInterestRate(10);
-
-nerdola.loan(50000, 10);
-console.log(nerdola);
-console.log(nerdola.loans[0].installment);
-console.log(nerdola.loans[0].installment.payment());
-console.log(nerdola.getBalance);
+console.log(App.findUser("nerdola@email.com"))
+console.log(App.findUser("nerdola@email.com").account)
+console.log(App.findUser("pzglevi@email.com"))
+console.log(App.findUser("pzglevi@email.com").account)
+console.log(App.findUser("golpebaixo@email.com"))
+console.log(App.findUser("golpebaixo@email.com").account)
+console.log(App.findUser("golpebaixo@email.com").account.loans[0].installments)

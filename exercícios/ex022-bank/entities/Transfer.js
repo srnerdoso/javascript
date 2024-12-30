@@ -1,10 +1,8 @@
-const Deposit = require("./Deposit");
-
-module.exports = class Transfer extends Deposit {
+module.exports = class Transfer {
   constructor(amount, sender, receiver) {
-    super(amount);
+    this.amount = amount;
     this.sender = sender;
     this.receiver = receiver;
-    super.createdIn;
+    this.createdAt = new Date();
   }
 };
