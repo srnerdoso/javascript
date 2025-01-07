@@ -2,38 +2,30 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Controle Financeiro</title>
+    <title>Minhas Finanças</title>
   </head>
   <body>
+    <h1>Minhas Finanças</h1>
     <main>
-      <h1>Controle Financeiro</h1>
-      <form action="db.json" method="post">
-        <h2>Adicionar transação</h2>
-        <br />
-        <label for="description">Descrição</label><br />
-        <input type="text" id="description" placeholder="Mensalidade da faculdade..." />
-        <br />
-        <label for="value">Transação</label><br />
-        <span id="monetary-symbol">R$</span>
-        <input
-          type="number"
-          step="0.01"
-          min="0"
-          id="value"
-          placeholder="0.00"
-        />
-        <br />
-        <button type="submit">Enviar</button>
+      <form>
+        <h2>Nova Transação</h2>
+        <input type="hidden" id="id" name="id" />
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" />
+        <label for="amount">Valor:</label>
+        <input type="number" step="0.01" id="amount" name="amount" />
+        <br /><br />
+        <button>Salvar</button>
       </form>
-
-      <!-- transactions deve aparece apenas quando houver alguma
-      transação no backend -->
-      <div id="transactions">
+      <div>
+        <h2>Saldo: <span id="balance"></span></h2>
         <h2>Histórico de Transações</h2>
+        <section id="transactions"></section>
       </div>
-
-      <script src="./index.js"></script>
     </main>
+
+    <script src="index.js"></script>
   </body>
 </html>
